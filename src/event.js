@@ -73,7 +73,7 @@ let delegate = (selector, type, handler, parent, isUndelegate) => {
   }
   
   // add parentElem to reduce the bubble numer
-  let parentElem = parent || document.getElementsByTagName('body')[0]
+  let parentElem = selector2dom(parent) || document.getElementsByTagName('body')[0]
   if (!isUndelegate) {
     delegateCb[selector] || (delegateCb[selector] = handle)
     on(parentElem, type, delegateCb[selector])
