@@ -1,0 +1,6 @@
+{
+  "root": true,
+  "extends": "xiaoping-fe",
+  "env": {},
+  "plugins": []
+}
