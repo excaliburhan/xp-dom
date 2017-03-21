@@ -3,10 +3,17 @@
  * @email edwardhjp@gmail.com
  * @create date 2017-03-21 04:18:46
  * @modify date 2017-03-21 04:18:46
- * @desc [element polyfill methods]
+ * @desc [element methods]
 */
 
 let elementProto = window.Element.prototype
+
+let selector2dom = (elem) => {
+  if (typeof elem === 'string') { // polyfill selector
+    elem = document.querySelector(elem)
+  }
+  return elem
+}
 
 let matches = (elem, selector) => {
   function _matches(elem, selector) {
@@ -40,6 +47,7 @@ let closest = (elem, selector) => {
 }
 
 export {
+  selector2dom,
   matches,
   closest,
 }

@@ -6,7 +6,7 @@
  * @desc [event, compatible with ie >= 8]
 */
 
-import { closest } from './element.js'
+import { selector2dom, closest } from './element.js'
 
 // preserve delegate cb
 let delegateCb = {}
@@ -14,18 +14,14 @@ let delegateCb = {}
 let on = (() => {
   if (document.addEventListener) {
     return (elem, type, handler) => {
-      if (typeof elem === 'string') { // polyfill selector
-        elem = document.querySelector(elem)
-      }
+      elem = selector2dom(elem)
       if (elem && type && handler) {
         elem.addEventListener(type, handler, false)
       }
     }
   } else {
     return (elem, type, handler) => {
-      if (typeof elem === 'string') { // polyfill selector
-        elem = document.querySelector(elem)
-      }
+      elem = selector2dom(elem)
       if (elem && type && handler) {
         elem.attachEvent(`on${type}`, handler)
       }
@@ -36,18 +32,14 @@ let on = (() => {
 let off = (() => {
   if (document.removeEventListener) {
     return (elem, type, handler) => {
-      if (typeof elem === 'string') { // polyfill selector
-        elem = document.querySelector(elem)
-      }
+      elem = selector2dom(elem)
       if (elem && type) {
         elem.removeEventListener(type, handler, false)
       }
     };
   } else {
     return (elem, type, handler) => {
-      if (typeof elem === 'string') { // polyfill selector
-        elem = document.querySelector(elem)
-      }
+      elem = selector2dom(elem)
       if (elem && type) {
         elem.detachEvent(`on${type}`, handler)
       }
@@ -81,7 +73,7 @@ let delegate = (selector, type, handler, parent, isUndelegate) => {
   }
   
   // add parentElem to reduce the bubble numer
-  let parentElem = parent || document.getElementsByTagName('body')[0]
+  let parentElem = selector2dom(parent) || document.getElementsByTagName('body')[0]
   if (!isUndelegate) {
     delegateCb[selector] || (delegateCb[selector] = handle)
     on(parentElem, type, delegateCb[selector])
