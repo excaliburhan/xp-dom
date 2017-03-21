@@ -7,7 +7,8 @@
 */
 
 import { on, off, one, delegate, undelegate } from './event.js'
-import { matches, closest } from './element.js'
+import { matches, closest, hasClass } from './element.js'
+import { addClass, removeClass, toggleClass, itemClass } from './classlist.js'
 
 export {
   on,
@@ -17,4 +18,9 @@ export {
   undelegate,
   matches,
   closest,
+  hasClass,
+  addClass,
+  removeClass,
+  toggleClass,
+  itemClass,
 }
