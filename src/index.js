@@ -6,9 +6,9 @@
  * @desc [dom methods]
 */
 
-import { on, off, one, delegate, undelegate } from './event.js'
-import { matches, closest, hasClass } from './element.js'
-import { addClass, removeClass, toggleClass, itemClass } from './classlist.js'
+import { on, off, one, delegate, undelegate } from './lib/event.js'
+import { matches, closest } from './lib/element.js'
+import { hasClass, addClass, removeClass, toggleClass, itemClass } from './lib/classlist.js'
 
 export {
   on,

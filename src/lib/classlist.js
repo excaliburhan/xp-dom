@@ -81,7 +81,7 @@ let itemClass = (elem, number) => {
   }
   let classnames = (elem.className || '').split(' ')
   if (classnames.length >= number && number >= 0) {
-    return  classnames[number]
+    return classnames[number]
   }
   return null
 }
