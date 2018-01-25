@@ -36,7 +36,7 @@ let off = (() => {
       if (elem && type) {
         elem.removeEventListener(type, handler, false)
       }
-    };
+    }
   } else {
     return (elem, type, handler) => {
       elem = selector2dom(elem)
@@ -71,7 +71,7 @@ let delegate = (selector, type, handler, parent, isUndelegate) => {
       handler.call(elem, e)
     }
   }
-  
+
   // add parentElem to reduce the bubble numer
   let parentElem = selector2dom(parent) || document.getElementsByTagName('body')[0]
   if (!isUndelegate) {
